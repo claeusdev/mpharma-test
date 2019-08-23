@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from "react-redux";
+import { getAllProducts } from "../redux/actions";
 
-function App() {
+function App({products}) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {products &&
+        products.map(product => {
+          return (
+            <h1 key={product.id}>
+              {product.name}
+            </h1>
+          );
+        })}
     </div>
   );
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetAllProducts: dispatch(getAllProducts()),
+  };
+};
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    products: state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
