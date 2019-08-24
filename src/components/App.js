@@ -19,16 +19,18 @@ function App({products, onAddProduct, onDeleteProduct}) {
   return (
     <div className="App">
       <Form onAddProduct={onAddProduct} handleSubmit={handleSubmit} />
-      {products &&
-        products.map(product => {
-          return (
-            <Product
-              key={product.id}
-              product={product}
-              deleteProduct={deleteProduct}
-            />
-          );
-        })}
+      <div data-testid="product-list">
+        {products &&
+          products.map(product => {
+            return (
+              <Product
+                key={product.id}
+                product={product}
+                deleteProduct={deleteProduct}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 }
