@@ -15,8 +15,9 @@ const enhancers = compose(
 
 const store = createStore(productsReducer, enhancers);
 
+
 ReactDOM.render(
-  <Provider store={store}>
+ <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")

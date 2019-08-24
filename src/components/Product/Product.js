@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Form from "./Form";
+import Form from "../NewProductForm";
 
 function Product({ product, deleteProduct }) {
   const [isEditing, setIsEditing] = useState(false);

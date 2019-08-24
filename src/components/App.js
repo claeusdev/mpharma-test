@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { getAllProducts, addProduct, removeProduct } from "../redux/actions";
-import Form from './Form';
+import Form from './NewProductForm';
 import Product from './Product';
 
 function App({products, onAddProduct, onDeleteProduct}) {

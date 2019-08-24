@@ -15,7 +15,7 @@ function Form({ handleSubmit }) {
         date: moment(Date.now())
       }
     ]
-  }
+  };
   return (
     <form onSubmit={e => handleSubmit(e, data)}>
       <label htmlFor="name">
