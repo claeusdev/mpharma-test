@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "../NewProductForm";
+import { ProductItem } from "../Styles";
 
 function Product({ product, deleteProduct }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -11,10 +12,16 @@ function Product({ product, deleteProduct }) {
       {isEditing ? (
         <Form product={product} />
       ) : (
-        <h1 key={product.id}>
-          {product.name} <span onClick={toggleEditing}>edit</span>
-          <span onClick={e => deleteProduct(e, product)}>delete</span>
-        </h1>
+          <ProductItem key={product.id}>
+            <div className="details">
+              <h1 key={product.id}>
+            {product.name}</h1>
+            </div>
+            <div className="actions">
+              <span onClick={toggleEditing}>edit</span>
+            <span onClick={e => deleteProduct(e, product)}>delete</span>
+            </div>
+          </ProductItem>
       )}
     </>
   );

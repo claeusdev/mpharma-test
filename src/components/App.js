@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getAllProducts, addProduct, removeProduct } from "../redux/actions";
 import Form from './NewProductForm';
 import Product from './Product';
+import { Container, FormField, ProductList } from './Styles';
 
 function App({products, onAddProduct, onDeleteProduct}) {
   
@@ -14,19 +15,25 @@ function App({products, onAddProduct, onDeleteProduct}) {
   
   return (
     <div className="App">
-      <Form onAddProduct={onAddProduct} />
-      <div data-testid="product-list">
-        {products &&
-          products.map(product => {
-            return (
-              <Product
-                key={product.id}
-                product={product}
-                deleteProduct={deleteProduct}
-              />
-            );
-          })}
-      </div>
+      <Container>
+        <FormField>
+          <Form onAddProduct={onAddProduct} />
+        </FormField>
+        <ProductList>
+          <div data-testid="product-list">
+            {products &&
+              products.map(product => {
+                return (
+                  <Product
+                    key={product.id}
+                    product={product}
+                    deleteProduct={deleteProduct}
+                  />
+                );
+              })}
+          </div>
+        </ProductList>
+      </Container>
     </div>
   );
 }
