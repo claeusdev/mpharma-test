@@ -49,3 +49,54 @@ export const getAllProducts = () => {
     }
   };
 };
+
+export const addNewInit = () => {
+  return {
+    type: ADD_PRODUCT_INIT
+  };
+};
+
+export const addNewSuccess = products => {
+  return {
+    type: ADD_PRODUCT_SUCCESS,
+    payload: {
+      products
+    }
+  };
+};
+export const addProduct = product => {
+  return dispatch => {
+    dispatch(addNewInit());
+    const products = JSON.parse(localStorage.getItem("products"));
+    const newState = [...products, product];
+    localStorage.setItem("products", JSON.stringify(newState));
+    dispatch(addNewSuccess(newState));
+  };
+};
+
+export const removeProductSuccess = products => {
+  return {
+    type: REMOVE_PRODUCT_SUCCESS,
+    payload: {
+      products
+    }
+  };
+};
+
+export const removeProductError = error => {
+  return {
+    type: REMOVE_PRODUCT_ERROR,
+    payload: {
+      error
+    }
+  };
+};
+
+export const removeProduct = product => {
+  return dispatch => {
+    const products = JSON.parse(localStorage.getItem("products"));
+    const newState = products.filter(p => p.id !== product.id);
+    localStorage.setItem("products", JSON.stringify(newState));
+    dispatch(removeProductSuccess(newState));
+  };
+};
