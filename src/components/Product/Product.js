@@ -13,7 +13,7 @@ function Product({ product, deleteProduct }) {
       ) : (
         <h1 key={product.id}>
           {product.name} <span onClick={toggleEditing}>edit</span>
-          <span onClick={e => deleteProduct(e, product)}>X</span>
+          <span onClick={e => deleteProduct(e, product)}>delete</span>
         </h1>
       )}
     </>

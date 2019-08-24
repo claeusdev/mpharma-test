@@ -2,22 +2,29 @@ import React, { useState } from "react";
 import uuid from "uuid/v4";
 import moment from "moment";
 
-function Form({ handleSubmit }) {
+function Form({ onAddProduct }) {
   const [name, setName] = useState();
   const [price, setPrice] = useState();
-  const data = {
-    id: uuid(),
-    name,
-    prices: [
-      {
-        id: uuid(),
-        price: parseInt(price),
-        date: moment(Date.now())
-      }
-    ]
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      id: uuid(),
+      name,
+      prices: [
+        {
+          id: uuid(),
+          price: parseInt(price),
+          date: moment(Date.now())
+        }
+      ]
+    };
+    onAddProduct(data);
   };
+
   return (
-    <form onSubmit={e => handleSubmit(e, data)}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="name">
         {" "}
         Name

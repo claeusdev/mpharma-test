@@ -5,11 +5,7 @@ import Form from './NewProductForm';
 import Product from './Product';
 
 function App({products, onAddProduct, onDeleteProduct}) {
-  const handleSubmit = (e, data) => {
-    e.preventDefault();
-    onAddProduct(data);
-  };
-
+  
   const deleteProduct = (e, product) => {
     e.preventDefault();
     onDeleteProduct(product);
@@ -18,7 +14,7 @@ function App({products, onAddProduct, onDeleteProduct}) {
   
   return (
     <div className="App">
-      <Form onAddProduct={onAddProduct} handleSubmit={handleSubmit} />
+      <Form onAddProduct={onAddProduct} />
       <div data-testid="product-list">
         {products &&
           products.map(product => {

@@ -20,6 +20,8 @@ it("renders without crashing", () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
+afterEach(cleanup)
+
 test("<App /> renders initial state", async () => {
   const {findByText} = render(
     <Provider store={store}>
