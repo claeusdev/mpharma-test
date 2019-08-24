@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
-import uuid from "uuid/v4";
 import { getAllProducts, addProduct, removeProduct } from "../redux/actions";
 import Form from './Form';
+import Product from './Product';
 
 function App({products, onAddProduct, onDeleteProduct}) {
   const handleSubmit = (e, data) => {
@@ -22,9 +22,11 @@ function App({products, onAddProduct, onDeleteProduct}) {
       {products &&
         products.map(product => {
           return (
-            <h1 key={product.id}>
-              {product.name}
-            </h1>
+            <Product
+              key={product.id}
+              product={product}
+              deleteProduct={deleteProduct}
+            />
           );
         })}
     </div>
