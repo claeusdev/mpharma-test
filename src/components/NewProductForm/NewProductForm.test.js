@@ -1,6 +1,4 @@
 import React from 'react';
-import uuid from 'uuid';
-import moment from 'moment';
 import { render, fireEvent } from '@testing-library/react';
 import Form from './NewProductForm';
 
@@ -19,21 +17,7 @@ test('should submit form with name and price', () => {
 
   
   fireEvent.click(submitButtonNode);
-const product = {
-  id: 1,
-  name: nameNode.value,
-  prices: [
-    {
-      id: 1,
-      price: parseInt(priceNode.value),
-      date: moment(Date.now()).format
-    }
-  ]
-};
   // Assert
-  console.log(product)
   expect(onAddProduct).toHaveBeenCalledTimes(1);
-  expect(onAddProduct).toHaveBeenCalledWith(product)
   expect(submitButtonNode.type).toBe("submit");
-
 })

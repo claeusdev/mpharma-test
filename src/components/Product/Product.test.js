@@ -12,24 +12,14 @@ const product = {
   }]
 }
 
-// test("renders product on page", () => {
-//     const { getByText, getByTestId, get } = render(<Product product={product} />);
-//     expect()
-
-// })
-test("sets form to editing state", async () => {
+test("renders product correctly", async () => {
   const { getByText } = render(<Product product={product}/>);
-
-  fireEvent.click(getByText("edit"));
-
-  
+  expect(getByText('Exforge 10mg')).toBeTruthy()
 });
 
-test("delete product state", async () => {
+test("delete product from state", async () => {
   const deleteProduct = jest.fn()
-  const { getByText } = render(<Product product={product} deleteProduct={deleteProduct}/>);
-
+  const { getByText} = render(<Product product={product} deleteProduct={deleteProduct}/>);
   fireEvent.click(getByText("delete"));
-  
   expect(deleteProduct).toHaveBeenCalledTimes(1)
 });
