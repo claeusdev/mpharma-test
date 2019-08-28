@@ -15,7 +15,6 @@ test('should submit form with name and price', () => {
   nameNode.value = "Paracetamol"
   priceNode.value = 10
 
-  
   fireEvent.click(submitButtonNode);
   // Assert
   expect(onAddProduct).toHaveBeenCalledTimes(1);

@@ -15,12 +15,14 @@ function Form({ onAddProduct }) {
       prices: [
         {
           id: uuid(),
-          price: parseInt(price),
+          price,
           date: moment(Date.now())
         }
       ]
     };
     onAddProduct(data);
+    setName('')
+    setPrice(0.00)
   };
 
   return (
@@ -41,6 +43,8 @@ function Form({ onAddProduct }) {
         Price
         <input
           type="number"
+          step="0.01"
+          min="0"
           name="price"
           id="price"
           value={price}

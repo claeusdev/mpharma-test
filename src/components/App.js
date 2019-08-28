@@ -1,16 +1,21 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getAllProducts, addProduct, removeProduct } from "../redux/actions";
+import { getAllProducts, addProduct, removeProduct, onUpdateProduct, updateProduct } from "../redux/actions";
 import Form from './NewProductForm';
 import Product from './Product';
 import { Container, FormField, ProductList } from './Styles';
 
-function App({products, onAddProduct, onDeleteProduct}) {
+function App({products, onAddProduct, onDeleteProduct, onUpdateProduct}) {
   
   const deleteProduct = (e, product) => {
     e.preventDefault();
     onDeleteProduct(product);
   };
+
+  const updateProduct = (e, product) => {
+    e.preventDefault()
+    onUpdateProduct(product)
+  }
 
   
   return (
@@ -28,6 +33,7 @@ function App({products, onAddProduct, onDeleteProduct}) {
                     key={product.id}
                     product={product}
                     deleteProduct={deleteProduct}
+                    updateProduct={updateProduct}
                   />
                 );
               })}
@@ -41,7 +47,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onGetAllProducts: dispatch(getAllProducts()),
     onAddProduct: product => dispatch(addProduct(product)),
-    onDeleteProduct: product => dispatch(removeProduct(product))
+    onDeleteProduct: product => dispatch(removeProduct(product)),
+    onUpdateProduct: product => dispatch(updateProduct(product))
   };
 };
 

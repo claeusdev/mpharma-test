@@ -6,7 +6,8 @@ import {
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_ERROR,
   REMOVE_PRODUCT_SUCCESS,
-  REMOVE_PRODUCT_ERROR
+  REMOVE_PRODUCT_ERROR,
+  UPDATE_PRODUCT_SUCCESS
 } from "../actions";
 
 let initialState = [];
@@ -31,6 +32,8 @@ export function productsReducer(state = initialState, { type, payload }) {
     case ADD_PRODUCT_ERROR:
       return payload.error;
     case REMOVE_PRODUCT_SUCCESS:
+      return payload.products;
+    case UPDATE_PRODUCT_SUCCESS:
       return payload.products;
     case REMOVE_PRODUCT_ERROR:
       return payload.error;

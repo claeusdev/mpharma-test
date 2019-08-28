@@ -22,6 +22,7 @@ export const FormField = styled.div`
   background: white;
   padding: 20px;
   flex: 1;
+  height: 450px;
 `
 
 export const ProductList = styled.div`

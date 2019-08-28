@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Form from "../NewProductForm";
 import { ProductItem } from "../Styles";
 import moment from "moment";
 
-function Product({ product, deleteProduct }) {
+function Product({ product, deleteProduct, updateProduct }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState(product.name)
+  const [price, setPrice] = useState(product.prices[0].price)
+
   const toggleEditing = () => {
     setIsEditing(!isEditing);
   };
@@ -14,12 +16,50 @@ function Product({ product, deleteProduct }) {
     let latestPrice = prices.find(
       price =>
         price.date === moment.max(closeDate)._i);
-    return latestPrice.price;
+    return latestPrice && latestPrice.price;
   };
+
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    product.name = name
+    product.prices[0].price = price
+
+    updateProduct(e, product)
+    setName('')
+    setPrice('')
+    setIsEditing(false)
+  }
+
   return (
     <>
       {isEditing ? (
-        <Form product={product} />
+        <form onSubmit={handleUpdate}>
+          <label htmlFor="name">
+            {" "}
+            Name
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              onChange={e => setName(e.currentTarget.value)}
+            />
+          </label>
+          <label htmlFor="price">
+            {" "}
+            Price
+            <input
+              type="number"
+              step="0.01"
+              min="0"
+              name="price"
+              id="price"
+              value={price}
+              onChange={e => setPrice(e.currentTarget.value)}
+            />
+          </label>
+          <button type="submit">Save</button>
+        </form>
       ) : (
         <ProductItem key={product.id}>
           <div className="details">

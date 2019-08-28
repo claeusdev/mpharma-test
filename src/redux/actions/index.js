@@ -8,6 +8,7 @@ export const ADD_PRODUCT_SUCCESS = "products:AddSuccess";
 export const ADD_PRODUCT_ERROR = "products:AddError";
 export const REMOVE_PRODUCT_SUCCESS = "products:RemoveSuccess";
 export const REMOVE_PRODUCT_ERROR = "products:RemoveError";
+export const UPDATE_PRODUCT_SUCCESS = "products:UpdateSuccess";
 
 export const getAll = () => {
   return {
@@ -71,6 +72,28 @@ export const addProduct = product => {
     const newState = [...products, product];
     localStorage.setItem("products", JSON.stringify(newState));
     dispatch(addNewSuccess(newState));
+  };
+};
+
+export const updateProductSuccess = products => {
+  return {
+    type: UPDATE_PRODUCT_SUCCESS,
+    payload: {
+      products
+    }
+  };
+};
+
+export const updateProduct = product => {
+  return dispatch => {
+    const products = JSON.parse(localStorage.getItem("products"));
+    const oldProduct = products.find(p => p.id === product.id);
+    oldProduct.name = product.name
+    oldProduct.prices[0].price = parseFloat(product.prices[0].price)
+    const withoutProduct = products.filter(p => p.id !== product.id)
+    const newState = [...withoutProduct, oldProduct]
+    localStorage.setItem("products", JSON.stringify(newState));
+    dispatch(updateProductSuccess(newState));
   };
 };
 
